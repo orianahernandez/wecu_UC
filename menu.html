@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
  <style>
- h1{
+body{
  	display:flex;
     flex-direction:column;
     align-items:center;
@@ -20,11 +20,11 @@
 	 font-family: 'Trebuchet MS';
          color: #333;
     }
-  b{
- 	display:block;
-    flex-direction:row;
-    align-items:center;
-    margin:0;
+  b {
+      font-family: 'Trebuchet MS';
+      font-size: 28px;
+      line-height: 1.5;
+      color: #552;
     }
 	 body {
   background-image: url('BACK.png');
@@ -32,14 +32,11 @@
 </style>
 </head>
 <body bgcolor="#FBF5F5">
-<h1>Daily check-up</h1>
-<header>
-	<h1>WeCU- Services</h1>
-</header>
+
 <nav>
 	<b>
 <a href="index.html">Home</a> &nbsp;
-<a href="menu.html">services</a> &nbsp;
+<a href="menu.html">CU DAILY</a> &nbsp;
 <a href="jcontacts.html">Contact</a> &nbsp;
 <a href="WeCU.html">In UC WeCU</a>
 <a><br/>
@@ -48,7 +45,6 @@
 </nav>
 
   <div id="formSection">
-    <!-- Form Section -->
     <form onsubmit="event.preventDefault(); result();">
       <h3>Name<h3/>
       <input id="name" type="text" name="name" />
