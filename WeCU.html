@@ -49,7 +49,7 @@
       line-height: 1.5;
       color: #552;
     }
-    label {
+    input {
       font-family: 'Trebuchet MS';
       color: #333;
     }
@@ -69,8 +69,11 @@
 <hr>
 
 <main>
-<h1> Resources<h1> 
-<h3>For more tips and resources visit:<br/> <a href="https://www.uc.edu/campus-life/caps.html">UC CAPS</a><br>
+<div id="formSection">
+    <!-- Form Section -->
+ <form onsubmit="event.preventDefault(); result();">
+		<h1> Resources<h1> 
+		<h3>For more tips and resources visit:<br/> <a href="https://www.uc.edu/campus-life/caps.html">UC CAPS</a><br>
 		   <a href="https://www.uc.edu/health/healthyuc/resources/mental-health-resources.html">HealthyUC</a><br>
            <a href="https://www.uc.edu/campus-life/caps/support.html">Get support</a><br>
            <h3><hr/>
@@ -78,33 +81,48 @@
 <h2> In UC WeCU and we are here to help, check out some tips and recommendations to manage tough times at school.<h2>
 
 
- <h4>Check all the topics you wish to get tips and recommendations of </h4>
-      <label><input type="checkbox" id="cbox1" value="first_checkbox"> Stress</label><br>
-      <input type="checkbox" id="cbox2" value="second_checkbox"> <label for="cbox2">Anxiety about exams</label><br/>
+ <h4>Try all the topics you wish to get tips and recommendations of </h4>
+     
       
-      <input type="checkbox" id="cbox3" value="third_checkbox"> <label for="cbox2">Sesonal depression</label><br/>
-      <input type="checkbox" id="cbox4" value="fourth_checkbox"> <label for="cbox2">Home Sickness</label>
 <br/>
-<script>
+<p>
+  <input id="Stress" type="radio" name="website_poll" value="Stress"> Stress<br />
+      <input id="Anxiety about exams" type="radio" name="website_poll" value="Anxiety about exams"> Anxiety about exams<br />
+      <input id="Seasonal Depression" type="radio" name="website_poll" value="Seasonal Depression"> Seasonal Depression<br />
+      <input id="Home Sickness" type="radio" name="website_poll" value="Home Sickness"> Home Sickness</p><br />
+<button type="submit">Submit</button>
+  </form>
+  </div>
 
+  <div id="resultSection" style="display: none;">
+    <!-- Result Section -->
+    <div id="resultContainer"></div>
+  </div>
+<script>
+	function result() {
       
-      var level = document.getElementById('level').value;
-      var caja = document.getElementById('caja').value;
-      if (document.getElementById('cbox1').checked) {
-        caja1 = document.getElementById('cbox1').value;
-        document.write(caja);
-      } else if (document.getElementById('B').checked) {
-        poll = document.getElementById('B').value;
-        x = "Feel free to contact us and we'll address some of the situations making you feel this way.";
-      } else if (document.getElementById('Y').checked) {
-        poll = document.getElementById('Y').value;
-        x = "Feel free to contact us and we'll address some of the situations making you feel this way.";
+      var poll, x;
+      
+      
+      if (document.getElementById('Stress').checked) {
+        poll = document.getElementById('Stress').value;
+        x = "1: A great way to cope with stress is practicing guided meditation and respiration excercises. \n Have a regular sleep schedule \n Have balanced meals everyday, our stomach is the one in charge of producing most of our happiness neurotransmitters";
+      } else if (document.getElementById('Anxiety about exams').checked) {
+        poll = document.getElementById('Anxiety about exams').value;
+        x = " A great way to get rid of the anxiety befoe exams is setting up a schedule where you will work on time management, and set apart some times to study, rest, sleep, and have fun, a balanced life is a happy life. \n Task management is a good excercise to help you reduce anxiety, tear apart your tasks in smaller more manageable problems and it will make it easier for you to start one of them.";
+      } else if (document.getElementById('Seasonal Depression').checked) {
+        poll = document.getElementById('Seasonal Depression').value;
+        x = "A great way to manage Seasonal depression is by creating a moment in the day to appreciate things that you enjoy doing, maybe continue a hobby you abandonned some time ago, read for a while or look for a safe place inside your head. \n Remember that the seasonal depression will be saying bye as soon ad the sun comes back so keep it up!";
       } else {
-        poll = document.getElementById('G').value;
-        x = "Were glad you feel this way today! Let us know if there is something we can do to keep it like that.";
-         document.write(caja1);     
+        poll = document.getElementById('Home Sickness').value;
+        x = "Getting in touch with the people back home and talking about anything will help you, feeling nostalgia is the way of your body to tell you that you care, it is okay to miss your home. Not everything is forever so keep it up, set goals, milestones, plans, and in no time you will be lving your best life and see your family soon. ";
       }
 
+		
+      var resultContainer = document.getElementById('resultContainer');
+      resultContainer.innerHTML = "Here are some tips for the category you chose "+ "<br/>" + "<br/>" + "You chose the " + poll + " quadrant"+ x;
+      document.getElementById('resultSection').style.display = 'block';
+    }
       
 	</script>
 
