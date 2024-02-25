@@ -1,68 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>La Miche Mexican Grill- Menu</title> <img src="mex.webp" alt="chile" width="200" height="200">
+<title>WeCU- Services</title> 
 <meta charset = "utf-8">
+
+ <style>
+ h1{
+ 	display:flex;
+    flex-direction:column;
+    align-items:center;
+    margin:0;
+    }
+ form{
+ 	font-family: 'Trebuchet MS';
+    color: #333;
+    }
+ h1{
+ 	font-family: 'Trebuchet MS';
+    color: #333;
+    }
+  b{
+ 	display:block;
+    flex-direction:row;
+    align-items:center;
+    margin:0;
+    }
+</style>
 </head>
-<body bgcolor="#56EB60">
+<body bgcolor="#FBF5F5">
+<h1>Daily check-up</h1>
 <header>
-	<h1>La Miche Mexican Grill Menu</h1>
+	<h1>WeCU- Services</h1>
 </header>
 <nav>
 	<b>
 <a href="index.html">Home</a> &nbsp;
-<a href="menu.html">menu</a> &nbsp;
-<a href="jcontacts.html">Contact</a>
+<a href="menu.html">services</a> &nbsp;
+<a href="jcontacts.html">Contact<br/>
+<a><br/>
+<a></a>
 </b>
 </nav>
-<main>
-<h2>Best Sellers</h2>
-	<dl>
-	<dt><strong>Chilaquiles with chicken/chorizo</strong></dt>
-		<dd>Mexican fried tortilla nachos with "salsa verde", mozzarella cheese, onion, sour cream served with the protein of your choice.</dd>
-<img src="chila.jpg" alt="chilaquiles" width="200" height="200">
 
-	<dt><strong>Gorditas</strong></dt>
-		<dd>Thick corn tortilla with a pocket stuffed with the filling of your choice (cheese, chorizo with egg, pastor, chicken tinga or picadillo).</dd>
-<img src="gordi.jpg" alt="gorditas" width="200" height="200">
+  <div id="formSection">
+    <!-- Form Section -->
+    <form onsubmit="event.preventDefault(); result();">
+      <h3>Name<h3/>
+      <input id="name" type="text" name="name" />
 
-	<dt><strong>Flautas</strong></dt>
-		<dd>Mexican fried rolled tortillas filled with "salsa verde", cheese and the protein of your choice (chicken, pork, pastor).</dd>
-<img src="flauta.jpg" alt="flautas" width="200" height="200">
+      <h3>Indicate your energy level from 1-10</h3>
+      <input id="level" type="text" name="level" />
 
-	<dt><strong>Chicken Fajitas</strong></dt>
-		<dd>grilled chicken tenders with slices of green, red and yellow bell peppers, served with seasoned rice and refried beans.</dd>
-<img src="pollo.jpg" alt="chicken fajitas" width="200" height="200">
+      <h3>From the figure below, select the quadrant that describes how you feel today</h3>
+      <h4>Choose one</h4>
+      <img src="tec.jpg" alt="Mood meter" width="400" height="300"><br />
 
-<h2>Drinks</h2>
-	<dt><strong>Agua Fresca</strong></dt>
-		<dd>Lemon, Strawberry, horchata, "jamaica", cantaloupe.</dd>
-<img src="awa.jpg" alt="Agua Fresca" width="200" height="200">
+      <input id="R" type="radio" name="website_poll" value="Red"> Red<br />
+      <input id="B" type="radio" name="website_poll" value="Blue"> Blue<br />
+      <input id="Y" type="radio" name="website_poll" value="Yellow"> Yellow<br />
+      <input id="G" type="radio" name="website_poll" value="Green"> Green<br />
 
-	<dt><strong>Soda</strong></dt>
-		<dd>Coke, Fanta, Sprite, Sunkist, Pepsi, Dr. Pepper, mtn Dew</dd>
-<img src="soda.jpg" alt="Soda" width="200" height="200">
+      <h4>Check all that apply</h4>
+      <label><input type="checkbox" id="cbox1" value="first_checkbox"> SI</label><br>
+      <input type="checkbox" id="cbox2" value="second_checkbox"> <label for="cbox2">NO</label>
 
-	<dt><strong>Paloma</strong></dt>
-		<dd>Squirt with a shot of Tequila Don Julio, salt and a lemon wedge.</dd>
-<img src="paloma.jpg" alt="Paloma" width="200" height="200">
+      <h3>Do you have any concerns today?</h3>
+      <textarea id="concerns" name="concerns" rows="10" colls="500">This is a safe place, please feel free to share your thoughts with us.</textarea>
+      <br />
+      <br />
 
-	<dt><strong>Perla Negra</strong></dt>
-		<dd>energy drink with a shot of Jagermeister and ice.</dd>
-<img src="perla.jpg" alt="Perla Negra" width="200" height="200">
+      <button type="submit">Submit</button>
+    </form>
+  </div>
 
-	<dt><strong>Margarita</strong></dt>
-		<dd>Lemon slushie with a shot of the tequila of your choice( Don Julio, Centenario, Jose Cuervo, Maestro Tequilero, Herradura).</dd>
-<img src="marga.jpg" alt="Margarita" width="200" height="200">
+  <div id="resultSection" style="display: none;">
+    <!-- Result Section -->
+    <div id="resultContainer"></div>
+    <div id="myPlot" style="width:100%;max-width:700px"></div>
+  </div>
 
-	<dt><strong>Cuba</strong></dt>
-		<dd>Coke with a shot of Bacardi Rum and a squished lemon.</dd>
-<img src="cuba.jpg" alt="Cuba" width="200" height="200">
+  <script src="https://cdn.plot.ly/plotly-basic-latest.min.js"></script>
 
-	</dl>
-</main>
-<footer>
-<small><i>Copyright &copy; 2022 Johana</i></small>
-</footer>
+  <script>
+    function result() {
+      var name = document.getElementById('name').value;
+      var poll, x;
+      
+      var level = document.getElementById('level').value;
+      
+      if (document.getElementById('R').checked) {
+        poll = document.getElementById('R').value;
+        x = "Feel free to contact us and we'll address some of the situations making you feel this way.";
+      } else if (document.getElementById('B').checked) {
+        poll = document.getElementById('B').value;
+        x = "Feel free to contact us and we'll address some of the situations making you feel this way.";
+      } else if (document.getElementById('Y').checked) {
+        poll = document.getElementById('Y').value;
+        x = "Feel free to contact us and we'll address some of the situations making you feel this way.";
+      } else {
+        poll = document.getElementById('G').value;
+        x = "Were glad you feel this way today! Let us know if there is something we can do to keep it like that.";
+      }
+
+      var comments = document.getElementById('concerns').value;
+      const xArray = ["Blue", "Yellow", "Green", "Red"];
+      const yArray = [55, 49, 44, 24];
+      const layout = {
+        title: "Your mood and energy data for the last month!"
+      };
+      const data = [{
+        labels: xArray,
+        values: yArray,
+        type: "pie"
+      }];
+      Plotly.newPlot("myPlot", data, layout);
+
+      // Display results in a container
+      var resultContainer = document.getElementById('resultContainer');
+      resultContainer.innerHTML = "Thanks for completing the daily check-up, see you tomorrow!"+ "<br/>"+"<br/>" +
+        name + "<br/>" + "You chose the " + poll + " quadrant: " + x;
+      // Hide form section and show result section
+      document.getElementById('formSection').style.display = 'none';
+      document.getElementById('resultSection').style.display = 'block';
+    }
+  </script>
+
 </body>
+
 </html>
